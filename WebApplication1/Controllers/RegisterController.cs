@@ -6,8 +6,12 @@ using System.Web.Mvc;
 
 namespace WebApplication1.Controllers
 {
-    public class ItStepController : Controller
+    public class RegisterController : Controller
     {
-
+        // GET: Register
+        public ActionResult Index()
+        {
+            return View();
+        }
     }
 }
