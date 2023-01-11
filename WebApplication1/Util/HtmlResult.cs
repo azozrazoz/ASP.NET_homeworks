@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace WebApplication1.Controllers
+namespace WebApplication1.Util
 {
     public class HtmlResult : ActionResult
     {

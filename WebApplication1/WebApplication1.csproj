@@ -128,7 +128,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BuyTicketsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InfoController.cs" />
     <Compile Include="Util\HtmlResult.cs" />
     <Compile Include="Util\ImageResult.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -156,8 +158,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\chelover_pauk.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Files\l298.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -183,10 +187,17 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Buy.cshtml" />
     <Content Include="Views\Register\Register.cshtml" />
+    <Content Include="Views\BuyTickets\Create.cshtml" />
+    <Content Include="Views\BuyTickets\Delete.cshtml" />
+    <Content Include="Views\BuyTickets\Details.cshtml" />
+    <Content Include="Views\BuyTickets\Edit.cshtml" />
+    <Content Include="Views\BuyTickets\Index.cshtml" />
+    <Content Include="Views\Home\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Account\" />
     <Folder Include="Views\ImageResult\" />
+    <Folder Include="Views\Info\" />
     <Folder Include="Views\Qwerty\" />
   </ItemGroup>
   <ItemGroup>
