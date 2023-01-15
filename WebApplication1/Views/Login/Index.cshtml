@@ -1,0 +1,127 @@
+﻿@using (Html.BeginForm())
+            {
+                <input type="hidden"/>
+                <table>
+                    <tr><th><h1>Registration form</h1></th></tr>
+                    <tr>
+                        <td>
+                            <p>Login:</p>
+                        </td>
+                        <td>
+                            @Html.TextBox("Login: ", "Login")
+                            @*<input type="text" name="Login" />*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Password:</p>
+                        </td>
+                        <td>
+                            @Html.Password("Password: ", "Password")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input checked="checked" id="gender" name="Gender" type="radio" value="Man" />
+                            <span>Man</span>
+                            <input id="gender" name="Gender" type="radio" value="Women" />
+                            <span>Woman</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.RadioButton("gender", "Man")
+                            <span>Man</span><br />
+                            @Html.RadioButton("gender", "Woman")
+                            <span>Woman</span><br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="" name="" type="checkbox" value="false" />
+                            <input name="" type="hidden" value="false" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.CheckBox("Enable", true)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="Name">Name</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.Label("Name")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select id="countries" name="countries">
+                                <option value="1">Countries</option>
+                                <option>Kazakhstan</option>
+                                <option>Canada</option>
+                                <option>China</option>
+                                <option>Japan</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DropDownList("countries", new SelectList(new string[] { "Kazakhstan", "Canada", "China", "Japan" }), "Countries")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DropDownList("Author", ViewBag.Movies as SelectList)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <select Length="9" id="countries" name="countries" multiple="multiple">
+                                <option>Kazakhstan</option>
+                                <option>Canada</option>
+                                <option>China</option>
+                                <option>Japan</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.ListBox("countries", new MultiSelectList(new string[] { "Kazakhstan", "Canada", "China", "Japan" }), "Countries")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.ListBox("Author", ViewBag.Movies as SelectList)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Password:</p>
+                        </td>
+                        <td>
+                            <input type="password" name="PasswordConfirm" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea cols="20" , id="text" name="Text" rows="10">Hello guys</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.TextArea("text", "Hello guys", 10, 20, null)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" name="Login" />
+                        </td>
+                    </tr>
+                </table>
+            }
+

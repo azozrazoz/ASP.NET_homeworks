@@ -1,64 +1,96 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@using WebApplication1.Models
+@model IEnumerable<Movie>
 
-    /*Layout = "_Layout.cshtml";*/
-
-    Layout = null;
+@{
+    ViewBag.Title = "Главная страница";
 }
 
+
+@*@{Html.RenderPartial("Partial")}*@
+@Html.Partial("Partial", new string[] { "Kazakhstan", "Canada", "China", "Japan" })
+<br />
+<h3>There is Helper which written by Razor</h3>
+@MyHelpers.HtmlList(new string[] { "Astana", "Toronto", "Beijin", "Tokyo" })
+<br />
+
+<h3>There is Helper which written by C# class</h3>
+@{
+    string[] sightseeings = new string[] { "Baiterek", "CN tower", "Forbidden city", "Sakura" };
+}
+@using WebApplication1.Helpers
+@ListHelpers.CreateList(Html, sightseeings, new {@class="btn", @id="sightseeinglist"})
+<br />
+
+<h3>There is Helper for Image</h3>
+@{
+    string src = "../Images/unnamed.jpg";
+    string alt = "This is photo like mem";
+}
+@using WebApplication1.Helpers
+@ImageHelper.Image(Html, src, alt);
+<br />
 <div class="jumbotron">
     <h1>ASP.NET</h1>
     <h2>@ViewData["Head"]</h2>
-    <h2>@ViewBag.Head</h2>
+    <h2>@ViewBag.Head1</h2>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
-<h1>@Session["name"]</h1>
+<h1>
+    @Session["name"]
+</h1>
 
-@*@Html.TextBox("name", ViewData["Head"].ToString())*@
+@Html.TextBox("name", (string)ViewBag.Head)
+
 
 
 <div class="row">
     <div class="col-md-12">
-        <h2>Фильмы</h2>
+        <h2>Хочу посмотреть Фильм</h2>
+
+
         <table>
             <tr>
-                <td>
-                    Название фильмы
-                </td>
-                <td>
-                    Автор
-                </td>
-                <td>
-                    Дата релиза
-                </td>
-                <td>
-                    Студия
-                </td>
+                <td>Название фильма</td>
+                <td>Автор</td>
+                <td>Дата релиза</td>
+                <td>Студия</td>
+                <td> </td>
             </tr>
-            @foreach (var movie in ViewBag.Movies)
+
+            @foreach (WebApplication1.Models.Movie b in ViewBag.Movies)
             {
                 <tr>
-                    <td>
-                        @movie.Title
-                    </td>
-                    <td>
-                        @movie.Author
-                    </td>
-                    <td>
-                        @movie.Date
-                    </td>
-                    <td>
-                        @movie.CreateBy
-                    </td>
-                    <td>
-                        <p>
-                            <a href="~/Views/Home/Buy/@movie.Id"/>Buy
-                        </p>
-                    </td>
+                    <td>@b.Title</td>
+                    <td>@b.Author</td>
+                    <td>@b.Date</td>
+                    <td>@b.CreateBy</td>
+                    <td><p><a href="/Home/Buy/@b.Id">Купить</a></p></td>
                 </tr>
+            }
+
+
+            @helper Movie(IEnumerable<WebApplication1.Models.Movie> movies)
+            {
+                <ul>
+                    @foreach (WebApplication1.Models.Movie b in ViewBag.Movies)
+                    {
+                    <tr>
+                        <td>@b.Title</td>
+                        <td>@b.Author</td>
+                        <td>@b.Date</td>
+                        <td>@b.CreateBy</td>
+                        <td><p><a href="/Home/Buy/@b.Id">Купить</a></p></td>
+                    </tr>
+                }
+                    </ul>
             }
         </table>
     </div>
 </div>
+
+@*
+    @section Footer{
+        <p>&copy; @DateTime.Now.Year - мое приложение ASP.NET</p>
+    }*@

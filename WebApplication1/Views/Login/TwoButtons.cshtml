@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "TwoButtons";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>TwoButtons</h2>
+@using (Html.BeginForm("TwoButtons", "Login", FormMethod.Post))
+{
+    <button name="action" value="Add">Add</button>
+    <button name="action" value="Delete">Delete</button>
+}

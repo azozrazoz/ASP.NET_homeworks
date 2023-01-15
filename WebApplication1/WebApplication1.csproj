@@ -128,9 +128,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AsyncController.cs" />
     <Compile Include="Controllers\BuyTicketsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Helpers\IdolHelper.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Helpers\ListHelpers.cs" />
     <Compile Include="Util\HtmlResult.cs" />
     <Compile Include="Util\ImageResult.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -159,9 +164,11 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\chelover_pauk.jpg" />
+    <Content Include="Images\unnamed.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Files\l298.pdf" />
+    <Content Include="App_Code\MyHelpers.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -193,6 +200,15 @@
     <Content Include="Views\BuyTickets\Edit.cshtml" />
     <Content Include="Views\BuyTickets\Index.cshtml" />
     <Content Include="Views\Home\View.cshtml" />
+    <Content Include="Views\Home\Partial.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Login\TwoButtons.cshtml" />
+    <Content Include="Views\Async\Create.cshtml" />
+    <Content Include="Views\Async\Delete.cshtml" />
+    <Content Include="Views\Async\Details.cshtml" />
+    <Content Include="Views\Async\Edit.cshtml" />
+    <Content Include="Views\Async\Index.cshtml" />
+    <Content Include="Views\Shared\MyLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Account\" />

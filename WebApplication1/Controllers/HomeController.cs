@@ -22,6 +22,7 @@ namespace WebApplication1.Controllers
         {
             IEnumerable<Movie> movies = db.Movies;
             ViewBag.Movies = movies;
+            ViewBag.Message = "This is a partial view";
 
             Session["name"] = "Tom";
             return View();
@@ -203,6 +204,13 @@ namespace WebApplication1.Controllers
             string path = "~\\Images\\chelover_pauk.jpg";
 
             return new ImageResult(path);
+        }
+
+        public ActionResult Partial()
+        {
+            ViewBag.Message = "This is a partial view";
+
+            return PartialView();
         }
     }
 }
