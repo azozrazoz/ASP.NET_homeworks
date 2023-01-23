@@ -127,7 +127,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\AsyncController.cs" />
     <Compile Include="Controllers\BuyTicketsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -247,9 +247,14 @@
     <Content Include="Views\Student\GetCourses.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Movies\List.cshtml" />
+    <Content Include="Views\Accounts\GetAllUsers.cshtml" />
+    <Content Include="Views\Accounts\Create.cshtml" />
+    <Content Include="Views\Accounts\Delete.cshtml" />
+    <Content Include="Views\Accounts\Details.cshtml" />
+    <Content Include="Views\Accounts\Edit.cshtml" />
+    <Content Include="Views\Accounts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Account\" />
     <Folder Include="Views\ImageResult\" />
     <Folder Include="Views\Info\" />
     <Folder Include="Views\Qwerty\" />
