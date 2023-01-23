@@ -1,0 +1,10 @@
+﻿@model IEnumerable<WebApplication1.Models.Movie>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List Movies</h2>
+
+@WebApplication1.Helpers.MoviesHelper.MoviesList(Html, new string[] { "Интерстеллар", "Мост в террабитию", "Терминатор", "Живая сталь", "Твое имя", "Человек паук через вселенные", "Черный клевер", "Атака титанов", "Моя геройская академия", "Ван панч мэн" })

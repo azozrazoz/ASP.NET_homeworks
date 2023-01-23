@@ -1,0 +1,22 @@
+﻿@model WebApplication1.Models.Student
+@{
+    ViewBag.Title = "AddStudentV2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Student Version 2</h2>
+
+@{ 
+    WebApplication1.Models.Student student1 = new WebApplication1.Models.Student()
+    {
+        Id = 50,
+        Name = "Jony"
+    };
+}
+
+@using (Html.BeginForm())
+            {
+                @Html.EditorFor(m => m.Name)
+                @Html.EditorForModel();
+                <input type="submit" />
+            }

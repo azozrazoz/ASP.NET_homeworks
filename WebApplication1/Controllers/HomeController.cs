@@ -212,5 +212,80 @@ namespace WebApplication1.Controllers
 
             return PartialView();
         }
+
+        [HttpGet]
+        public ActionResult EditMovie(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+
+            Movie movie = db.Movies.Find(id);
+
+            if(movie != null)
+            {
+                return View(movie);
+            }
+
+            return HttpNotFound();
+        }
+
+        [HttpPost]
+        public ActionResult EditMovie(Movie movie)
+        {
+            db.Entry(movie).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult CreateMovie()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateMovie(Movie movie)
+        {
+            db.Entry(movie).State = EntityState.Added;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult DeleteMovie(int movieId)
+        {
+            Movie movie = new Movie { Id = movieId };
+            db.Entry(movie).State = EntityState.Deleted;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int movieId)
+        {
+            Movie movie = db.Movies.Find(movieId);
+            if (movie != null)
+            {
+                db.Movies.Remove(movie);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        /*[HttpPost]
+        public ActionResult Delete(int id)
+        {
+            Movie movie = db.Movies.Find(id);
+            if (movie != null)
+            {
+                db.Movies.Remove(movie);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }*/
     }
 }

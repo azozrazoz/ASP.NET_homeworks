@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "GetCourses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Get Courses</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="CourseBlock">
+        @Html.Label("Name of course")
+        @Html.TextBox("name")
+    </div>
+    <div id="studentBlock">
+        <div class="Students">
+            <h3>Student N1</h3>
+            <div>
+                @Html.Label("Student Name")
+                @Html.TextBox("Student[0].Name")
+            </div>
+        </div>
+    </div>
+
+    <p>
+        <a class="addLink">
+            Add new Student
+        </a>
+    </p>
+    <p>
+        <input type="submit" value="Send" />
+    </p>
+            }
+@section Scripts {
+    <script>
+        $(function () {
+            var i = 0;
+            $('.addLink').click(function () {
+                i++;
+                var html2Add = "<div class = 'Students'>" +
+                    "<h3> Student N" + (i + 1) + "</h3>" +
+                    "<div><label>Student Name</label>" +
+                    "<input type='text' name='Student[" + i + "].Name' /> " +
+                    "</div>" +
+                    "</div>";
+
+                $('studentBlock').append(html2Add);
+            })
+        })
+    </script>
+    }

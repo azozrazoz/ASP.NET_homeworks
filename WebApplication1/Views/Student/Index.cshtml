@@ -1,0 +1,30 @@
+﻿@model IEnumerable<WebApplication1.Models.IndexViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <td>
+            Name
+        </td>
+    </tr>
+
+    @foreach (var item in Model.Students)
+    {
+        <tr>
+            <td>@item.Name</td>
+        </tr>
+    }
+
+</table>
+
+<br />
+
+<div class="btn-group">
+    @Html.PageLink()
+</div>

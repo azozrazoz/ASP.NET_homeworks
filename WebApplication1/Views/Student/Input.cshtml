@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Input";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Input</h2>
+
+@using (Html.BeginForm())
+            {
+                @Html.TextBox("names")
+                @Html.TextBox("names")
+                @Html.TextBox("names")
+                @Html.TextBox("names")
+                <input type="submit" />
+            }
+

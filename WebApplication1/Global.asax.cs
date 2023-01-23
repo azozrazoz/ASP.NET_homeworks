@@ -14,7 +14,9 @@ namespace WebApplication1
     {
         protected void Application_Start()
         {
+            Database.SetInitializer(new CourseDBInitializer());
             Database.SetInitializer(new MoviesDbInitializer());
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
