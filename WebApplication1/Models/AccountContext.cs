@@ -9,5 +9,7 @@ namespace WebApplication1.Models
     public class AccountContext : DbContext
     {
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<Patient> Patients { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
     }
 }

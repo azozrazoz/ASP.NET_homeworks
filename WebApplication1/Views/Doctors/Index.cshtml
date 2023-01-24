@@ -1,11 +1,11 @@
-﻿@model IEnumerable<WebApplication1.Models.Account>
+﻿@model IEnumerable<WebApplication1.Models.Doctor>
 
 @{
-    ViewBag.Title = "GetAllUsers";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>GetAllUsers</h2>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -33,6 +33,9 @@
         <th>
             @Html.DisplayNameFor(model => model.IsAdmin)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Specialty)
+        </th>
         <th></th>
     </tr>
 
@@ -55,6 +58,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAdmin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Specialty)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

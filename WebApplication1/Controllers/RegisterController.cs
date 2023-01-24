@@ -27,14 +27,8 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public string Register(Account account)
         {
-            account.FirstName = "Alex";
-            account.LastName = "";
-            account.Email = "alex.a@gmail.com";
-            account.Gender = true;
-            account.CreatedDate = DateTime.Now;
             db.Accounts.Add(account);
             db.SaveChanges();
-
 
             return $"{account.FirstName}, welcome!";
         }

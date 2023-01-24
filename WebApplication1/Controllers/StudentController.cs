@@ -15,7 +15,12 @@ namespace WebApplication1.Controllers
         public ActionResult Index(int page = 1)
         {
             int pageSize = 3;
-            IEnumerable<Student> students = db.Students.Skip((page - 1) * pageSize).Take(pageSize);
+
+            IEnumerable<Student> students = db.Students
+                .OrderBy(x => x.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize);
+
             PageInfo pageInfo = new PageInfo 
             { 
                 PageNumber = page, 
@@ -32,9 +37,15 @@ namespace WebApplication1.Controllers
             return View(indexView);
         }
 
+        public ActionResult TemplateExample()
+        {
+            return View();
+        }
+
         public ActionResult Details(int? id)
         {
             Student student = db.Students.Find(id);
+
             if (student == null)
             {
                 return HttpNotFound();
@@ -180,6 +191,13 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult GetCourses(Course course)
         {
+            return View();
+        }
+
+        public ActionResult FilterExample()
+        {
+            // IQueryable<Student> students = db.Students.Include(p => p.Courses);
+
             return View();
         }
     }

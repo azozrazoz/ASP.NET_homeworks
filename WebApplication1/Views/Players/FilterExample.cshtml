@@ -1,0 +1,53 @@
+﻿@model WebApplication1.Models.PlayersListViewModel
+@{
+    ViewBag.Title = "FilterExample";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Filter Example</h2>
+
+<form method="get">
+    <div class="form-inline">
+        @Html.LabelFor(p => p.Team, "Team", new { @class = "control-label" })
+        @Html.DropDownListFor(p => p.Team, Model.Team as SelectList, htmlAttributes: new { @class = "form-control" })
+
+        @Html.LabelFor(p => p.Position, "Position", new { @class = "control-label" })
+        @Html.DropDownListFor(p => p.Position, Model.Position as SelectList, htmlAttributes: new { @class = "form-control" })
+    </div>
+    <input type="submit" value="Filter" class="btn btn-primary" />
+</form>
+
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Age
+        </th>
+        <th>
+            Position
+        </th>
+        <th>
+            Team
+        </th>
+    </tr>
+    @foreach (var item in Model.Players)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(ModelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(ModelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(ModelItem => item.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(ModelItem => item.Team.Name)
+            </td>
+        </tr>
+    }
+
+</table>

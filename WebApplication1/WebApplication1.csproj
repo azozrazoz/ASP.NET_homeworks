@@ -130,10 +130,12 @@
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\AsyncController.cs" />
     <Compile Include="Controllers\BuyTicketsController.cs" />
+    <Compile Include="Controllers\DoctorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\PatientsController.cs" />
     <Compile Include="Controllers\PlayersController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Helpers\IdolHelper.cs" />
@@ -147,6 +149,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CourseDBInitializer.cs" />
+    <Compile Include="Models\Patient.cs" />
+    <Compile Include="Models\PlayerDbInitializer.cs" />
     <Compile Include="Models\Players.cs" />
     <Compile Include="Models\SoccerContext.cs" />
     <Compile Include="Models\StudentContext.cs" />
@@ -164,6 +168,7 @@
     <Compile Include="Models\MoviesDbInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Student.cs" />
+    <Content Include="Views\Players\FilterExample.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\SoccerInfo.mdf" />
@@ -253,8 +258,20 @@
     <Content Include="Views\Accounts\Details.cshtml" />
     <Content Include="Views\Accounts\Edit.cshtml" />
     <Content Include="Views\Accounts\Index.cshtml" />
+    <Content Include="Views\Patients\Create.cshtml" />
+    <Content Include="Views\Patients\Delete.cshtml" />
+    <Content Include="Views\Patients\Details.cshtml" />
+    <Content Include="Views\Patients\Edit.cshtml" />
+    <Content Include="Views\Patients\Index.cshtml" />
+    <Content Include="Views\Doctors\Create.cshtml" />
+    <Content Include="Views\Doctors\Delete.cshtml" />
+    <Content Include="Views\Doctors\Details.cshtml" />
+    <Content Include="Views\Doctors\Edit.cshtml" />
+    <Content Include="Views\Doctors\Index.cshtml" />
+    <Content Include="Views\Doctors\Patients.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="CodeTemplates\MvcView\" />
     <Folder Include="Views\ImageResult\" />
     <Folder Include="Views\Info\" />
     <Folder Include="Views\Qwerty\" />

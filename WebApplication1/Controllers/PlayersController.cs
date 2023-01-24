@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace WebApplication1.Controllers
 {
@@ -159,6 +160,40 @@ namespace WebApplication1.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public async Task<ActionResult> FilterExample(int? team, string position)
+        {
+            IQueryable<Player> players = db.Players.AsNoTracking().Include(p => p.Team);
+
+            if (team != null && team != 0)
+            {
+                players = players.Where(p => p.TeamId == team);
+            }
+
+            if (string.IsNullOrEmpty(position) && position.Equals("All"))
+            {
+                players = players.Where(p => p.Position == position);
+            }
+
+            List<Team> teams = db.Teams.ToList();
+            teams.Insert(0, new Team { Name = "All", Id = 0 });
+
+            PlayersListViewModel playersListView = new PlayersListViewModel
+            {
+                Players = players.ToList(),
+                Team = new SelectList(teams, "Id", "Name"),
+                Position = new SelectList(new List<string>()
+                {
+                    "All",
+                    "Forward",
+                    "Midfielder",
+                    "Defender",
+                    "Goalkeeper",
+                }),
+            };
+
+            return View(playersListView);
         }
     }
 }

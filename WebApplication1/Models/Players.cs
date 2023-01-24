@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace WebApplication1.Models
 {
@@ -25,5 +26,12 @@ namespace WebApplication1.Models
         {
             Players = new List<Player>();
         }
+    }
+
+    public class PlayersListViewModel
+    {
+        public IEnumerable<Player> Players { get; set; }
+        public SelectList Position { get; set; }
+        public SelectList Team { get; set; }
     }
 }

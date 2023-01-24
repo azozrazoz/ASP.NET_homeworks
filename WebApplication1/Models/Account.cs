@@ -22,5 +22,7 @@ namespace WebApplication1.Models
         public bool Gender { get; set; }
 
         public DateTime CreatedDate { get; set; }
+
+        public bool IsAdmin { get; set; }
     }
 }

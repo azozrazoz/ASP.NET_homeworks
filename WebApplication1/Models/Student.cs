@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace WebApplication1.Models
 {
@@ -53,5 +54,12 @@ namespace WebApplication1.Models
     {
         public IEnumerable<Student> Students { get; set; }
         public PageInfo pageInfo { get; set; }
+    }
+
+    public class StudentsListViewModel
+    {
+        public IEnumerable<Student> Students { get; set; }
+        public SelectList Courses { get; set; }
+        public SelectList Faculty { get; set; }
     }
 }

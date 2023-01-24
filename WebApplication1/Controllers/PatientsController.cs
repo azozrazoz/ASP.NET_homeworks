@@ -11,107 +11,107 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    public class AccountsController : Controller
+    public class PatientsController : Controller
     {
         private AccountContext db = new AccountContext();
 
-        // GET: Accounts
+        // GET: Patients
         public async Task<ActionResult> Index()
         {
-            return View(await db.Accounts.ToListAsync());
+            return View(await db.Patients.ToListAsync());
         }
 
-        // GET: Accounts/Details/5
+        // GET: Patients/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Account account = await db.Accounts.FindAsync(id);
-            if (account == null)
+            Patient patient = await db.Patients.FindAsync(id);
+            if (patient == null)
             {
                 return HttpNotFound();
             }
-            return View(account);
+            return View(patient);
         }
 
-        // GET: Accounts/Create
+        // GET: Patients/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Accounts/Create
+        // POST: Patients/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,FirstName,LastName,Email,Password,Gender,CreatedDate,IsAdmin")] Account account)
+        public async Task<ActionResult> Create([Bind(Include = "Id,FirstName,LastName,Email,Password,Gender,CreatedDate,IsAdmin")] Patient patient)
         {
             if (ModelState.IsValid)
             {
-                db.Accounts.Add(account);
+                db.Patients.Add(patient);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(account);
+            return View(patient);
         }
 
-        // GET: Accounts/Edit/5
+        // GET: Patients/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Account account = await db.Accounts.FindAsync(id);
-            if (account == null)
+            Patient patient = await db.Patients.FindAsync(id);
+            if (patient == null)
             {
                 return HttpNotFound();
             }
-            return View(account);
+            return View(patient);
         }
 
-        // POST: Accounts/Edit/5
+        // POST: Patients/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,FirstName,LastName,Email,Password,Gender,CreatedDate,IsAdmin")] Account account)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,FirstName,LastName,Email,Password,Gender,CreatedDate,IsAdmin")] Patient patient)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(account).State = EntityState.Modified;
+                db.Entry(patient).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(account);
+            return View(patient);
         }
 
-        // GET: Accounts/Delete/5
+        // GET: Patients/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Account account = await db.Accounts.FindAsync(id);
-            if (account == null)
+            Patient patient = await db.Patients.FindAsync(id);
+            if (patient == null)
             {
                 return HttpNotFound();
             }
-            return View(account);
+            return View(patient);
         }
 
-        // POST: Accounts/Delete/5
+        // POST: Patients/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Account account = await db.Accounts.FindAsync(id);
-            db.Accounts.Remove(account);
+            Patient patient = await db.Patients.FindAsync(id);
+            db.Patients.Remove(patient);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
@@ -125,14 +125,29 @@ namespace WebApplication1.Controllers
             base.Dispose(disposing);
         }
 
-        [HttpGet]
-        public ActionResult GetAllUsers()
+        [HttpPost, ActionName("Bind")]
+        public async Task<ActionResult> Bind(int id, int idDoctor)
         {
-            List<Account> accounts = db.Accounts.ToList();
+            Patient patient = await db.Patients.FindAsync(id);
+            Doctor doctor = await db.Doctors.FindAsync(idDoctor);
 
-            ViewBag.Accounts = accounts;
+            patient.doctor = doctor;
 
-            return View();
+            await db.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost, ActionName("UnBind")]
+        public async Task<ActionResult> UnBind(int id)
+        {
+            Patient patient = await db.Patients.FindAsync(id);
+
+            patient.doctor = null;
+
+            await db.SaveChangesAsync();
+
+            return RedirectToAction("Index");
         }
     }
 }
