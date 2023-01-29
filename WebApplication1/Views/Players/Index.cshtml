@@ -19,10 +19,22 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PasswordConfirm)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Age)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Position)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Check)
         </th>
         <th></th>
     </tr>
@@ -36,10 +48,22 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PasswordConfirm)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Age)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Position)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Check)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

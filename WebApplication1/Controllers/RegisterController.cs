@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -25,12 +26,21 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public string Register(Account account)
+        public ActionResult Register(Account account)
         {
             db.Accounts.Add(account);
             db.SaveChanges();
 
-            return $"{account.FirstName}, welcome!";
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult Register(Patient account)
+        {
+            db.Accounts.Add(account);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
     }
 }

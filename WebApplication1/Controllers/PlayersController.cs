@@ -8,7 +8,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
-using Microsoft.Ajax.Utilities;
 
 namespace WebApplication1.Controllers
 {
@@ -23,6 +22,7 @@ namespace WebApplication1.Controllers
             return View(await players.ToListAsync());
         }
 
+        [Authorize]
         // GET: Players/Details/5
         public async Task<ActionResult> Details(int? id)
         {
@@ -38,43 +38,11 @@ namespace WebApplication1.Controllers
             return View(player);
         }
 
-        
-
-        // GET: Players/Details/5
-        public async Task<ActionResult> TeamDetails(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Team team = await db.Teams.Include(t => t.Players).FirstOrDefaultAsync(t => t.Id == id);
-            if (team == null)
-            {
-                return HttpNotFound();
-            }
-            return View(team);
-        }
-
         // GET: Players/Create
-        public ActionResult CreateTeam()
+        public ActionResult Create()
         {
-            SelectList teams = new SelectList(db.Teams, "Id", "Name");
-            ViewBag.TeamsId = teams;
+            ViewBag.TeamId = new SelectList(db.Teams, "Id", "Name");
             return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateTeam([Bind(Include = "Id,Name,Coach")] Team team)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Teams.Add(team);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-
-            return View(team);
         }
 
         // POST: Players/Create
@@ -82,14 +50,24 @@ namespace WebApplication1.Controllers
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Age,Position,TeamId")] Player player)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Email,Password,PasswordConfirm,Age,Position,Check,TeamId")] Player player)
         {
+            if (string.IsNullOrEmpty(player.Name))
+            {
+                ModelState.AddModelError("Name", "Incorrect name");
+            }
+            else if (player.Name.Length < 3)
+            {
+                ModelState.AddModelError("Name", "Incorrect length of name");
+            }
             if (ModelState.IsValid)
             {
                 db.Players.Add(player);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+
+            ViewBag.Message = "Non Valid";
             ViewBag.TeamId = new SelectList(db.Teams, "Id", "Name", player.TeamId);
             return View(player);
         }
@@ -115,7 +93,7 @@ namespace WebApplication1.Controllers
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Age,Position,TeamId")] Player player)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Email,Password,PasswordConfirm,Age,Position,Check,TeamId")] Player player)
         {
             if (ModelState.IsValid)
             {
@@ -194,6 +172,19 @@ namespace WebApplication1.Controllers
             };
 
             return View(playersListView);
+        }
+
+        public ActionResult Menu()
+        {
+            List<MenuItem> menuItems = new List<MenuItem>();
+            return PartialView(menuItems);
+        }
+
+        [HttpGet]
+        public JsonResult Check(string check)
+        {
+            var result = !(check == "qwerty");
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }

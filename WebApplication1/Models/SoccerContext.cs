@@ -8,7 +8,8 @@ namespace WebApplication1.Models
 {
     public class SoccerContext : DbContext
     {
-        public DbSet<Player> Players { get; set; }
-        public DbSet<Team> Teams { get; set; }
+        public virtual DbSet<Player> Players { get; set; }
+        public virtual DbSet<Team> Teams { get; set; }
+        public virtual DbSet<MenuItem> MenuItems { get; set; }
     }
 }

@@ -124,15 +124,5 @@ namespace WebApplication1.Controllers
             }
             base.Dispose(disposing);
         }
-
-        [HttpGet]
-        public ActionResult GetAllUsers()
-        {
-            List<Account> accounts = db.Accounts.ToList();
-
-            ViewBag.Accounts = accounts;
-
-            return View();
-        }
     }
 }

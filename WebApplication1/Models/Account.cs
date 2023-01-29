@@ -19,7 +19,7 @@ namespace WebApplication1.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        public bool Gender { get; set; }
+        public string Gender { get; set; }
 
         public DateTime CreatedDate { get; set; }
 

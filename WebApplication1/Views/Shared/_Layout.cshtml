@@ -28,6 +28,11 @@
             </div>
         </div>
     </div>
+
+
+    @*@Html.Action("Menu", "Players")*@
+
+
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -39,8 +44,10 @@
         </footer>
     </div>
 
+    <script src="@Url.Content("~/bundles/bootstrap")" type="text/javascript"></script>
+
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @*@Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>
