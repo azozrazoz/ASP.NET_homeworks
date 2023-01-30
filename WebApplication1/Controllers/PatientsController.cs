@@ -124,30 +124,5 @@ namespace WebApplication1.Controllers
             }
             base.Dispose(disposing);
         }
-
-        [HttpPost, ActionName("Bind")]
-        public async Task<ActionResult> Bind(int id, int idDoctor)
-        {
-            Patient patient = await db.Patients.FindAsync(id);
-            Doctor doctor = await db.Doctors.FindAsync(idDoctor);
-
-            patient.doctor = doctor;
-
-            await db.SaveChangesAsync();
-
-            return RedirectToAction("Index");
-        }
-
-        [HttpPost, ActionName("UnBind")]
-        public async Task<ActionResult> UnBind(int id)
-        {
-            Patient patient = await db.Patients.FindAsync(id);
-
-            patient.doctor = null;
-
-            await db.SaveChangesAsync();
-
-            return RedirectToAction("Index");
-        }
     }
 }
