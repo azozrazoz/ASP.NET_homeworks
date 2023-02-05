@@ -25,6 +25,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Admin
+        [ActionName("EtoNeVhodDlyaAdmina")]
         public async Task<ActionResult> Index()
         {
             return View(await db.Accounts.ToListAsync());
