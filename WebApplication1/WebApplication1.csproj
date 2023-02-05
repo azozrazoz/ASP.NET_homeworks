@@ -136,30 +136,30 @@
     <Compile Include="Controllers\PatientsController.cs" />
     <Compile Include="Controllers\PlayersController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Filters\ActionFilter.cs" />
+    <Compile Include="Filters\AuthAttribute.cs" />
+    <Compile Include="Filters\AuthorizationFilter.cs" />
+    <Compile Include="Filters\CacheAttribute.cs" />
+    <Compile Include="Filters\ExceptionFilter.cs" />
+    <Compile Include="Filters\LogAttribute.cs" />
     <Compile Include="Helpers\IdolHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\ListHelpers.cs" />
     <Compile Include="Helpers\MoviesHelper.cs" />
     <Compile Include="Helpers\PagingHelpers.cs" />
-    <Compile Include="Migrations\202301230551592_InitialCreate.cs" />
-    <Compile Include="Migrations\202301230551592_InitialCreate.designer.cs">
-      <DependentUpon>202301230551592_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202301271504301_Soccer.cs" />
-    <Compile Include="Migrations\202301271504301_Soccer.designer.cs">
-      <DependentUpon>202301271504301_Soccer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202301291032589_Accounts.cs" />
-    <Compile Include="Migrations\202301291032589_Accounts.designer.cs">
-      <DependentUpon>202301291032589_Accounts.cs</DependentUpon>
+    <Compile Include="Migrations\202301301531507_InitialCreate.cs" />
+    <Compile Include="Migrations\202301301531507_InitialCreate.designer.cs">
+      <DependentUpon>202301301531507_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CourseDBInitializer.cs" />
     <Compile Include="Models\Patient.cs" />
+    <Compile Include="Models\PatientContext.cs" />
     <Compile Include="Models\PlayerDbInitializer.cs" />
     <Compile Include="Models\Players.cs" />
     <Compile Include="Models\SoccerContext.cs" />
     <Compile Include="Models\StudentContext.cs" />
+    <Compile Include="Models\Visitor.cs" />
     <Compile Include="Util\HtmlResult.cs" />
     <Compile Include="Util\ImageResult.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -203,11 +203,25 @@
     <Content Include="Scripts\jquery-3.6.3.slim.js" />
     <Content Include="Scripts\jquery-3.6.3.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Views\Players\FilterExample.cshtml" />
+    <Content Include="Views\Accounts\Register.cshtml" />
+    <Content Include="Views\Patients\Create.cshtml" />
+    <Content Include="Views\Patients\Delete.cshtml" />
+    <Content Include="Views\Patients\Details.cshtml" />
+    <Content Include="Views\Patients\Edit.cshtml" />
+    <Content Include="Views\Patients\Index.cshtml" />
+    <Content Include="Views\Patients\Register.cshtml" />
+    <Content Include="Views\Patients\BingToDoctor.cshtml" />
+    <Content Include="Views\Admin\Patients.cshtml" />
+    <Content Include="Views\Student\StudentSearch.cshtml" />
+    <Content Include="Views\Student\StudentText.cshtml" />
+    <Content Include="Views\Admin\AllUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\SoccerInfo.mdf" />
@@ -280,11 +294,6 @@
     <Content Include="Views\Accounts\Details.cshtml" />
     <Content Include="Views\Accounts\Edit.cshtml" />
     <Content Include="Views\Accounts\Index.cshtml" />
-    <Content Include="Views\Patients\Create.cshtml" />
-    <Content Include="Views\Patients\Delete.cshtml" />
-    <Content Include="Views\Patients\Details.cshtml" />
-    <Content Include="Views\Patients\Edit.cshtml" />
-    <Content Include="Views\Patients\Index.cshtml" />
     <Content Include="Views\Doctors\Create.cshtml" />
     <Content Include="Views\Doctors\Delete.cshtml" />
     <Content Include="Views\Doctors\Details.cshtml" />
@@ -331,14 +340,8 @@
     <Content Include="Scripts\jquery-3.6.3.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202301230551592_InitialCreate.resx">
-      <DependentUpon>202301230551592_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202301271504301_Soccer.resx">
-      <DependentUpon>202301271504301_Soccer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202301291032589_Accounts.resx">
-      <DependentUpon>202301291032589_Accounts.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202301301531507_InitialCreate.resx">
+      <DependentUpon>202301301531507_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

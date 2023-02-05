@@ -1,0 +1,64 @@
+﻿@model WebApplication1.Models.Patient
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Регистрация пациента</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <h4>Регистрация пользователя</h4>
+        <hr />
+        @Html.ValidationSummary(false)
+
+        <div>
+            First name
+            <div>
+                @Html.EditorFor(model => model.FirstName)
+            </div>
+        </div>
+
+        <div>
+            Last name
+            <div>
+                @Html.EditorFor(model => model.LastName)
+            </div>
+        </div>
+
+        <div>
+            Email
+            <div>
+                @Html.EditorFor(model => model.Email)
+            </div>
+        </div>
+
+        <div>
+            Password
+            <div>
+                @Html.PasswordFor(model => model.Password)
+            </div>
+        </div>
+
+        <div>
+            Gender
+            <div>
+                <select name="Gender">
+                    <option value="true">Man</option>
+                    <option value="false">Women</option>
+                </select>
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <input type="submit" value="Зарегистрировать" />
+            </div>
+        </div>
+    </div>
+}

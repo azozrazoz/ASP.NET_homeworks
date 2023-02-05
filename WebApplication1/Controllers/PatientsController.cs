@@ -13,7 +13,7 @@ namespace WebApplication1.Controllers
 {
     public class PatientsController : Controller
     {
-        private AccountContext db = new AccountContext();
+        private PatientContext db = new PatientContext();
 
         // GET: Patients
         public async Task<ActionResult> Index()
@@ -123,6 +123,40 @@ namespace WebApplication1.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> BingToDoctor()
+        {
+            List<Doctor> doctors = await db.Doctors.ToListAsync();
+            return View(doctors);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> BingToDoctor(int doctorId)
+        {
+            Doctor doctor = await db.Doctors.Where(x => x.Id == doctorId).FirstOrDefaultAsync();
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Register(Patient patient)
+        {
+            if (ModelState.IsValid)
+            {
+                patient.CreatedDate = DateTime.Now;
+                db.Patients.Add(patient);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

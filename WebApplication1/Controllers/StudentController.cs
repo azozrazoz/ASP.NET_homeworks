@@ -200,5 +200,23 @@ namespace WebApplication1.Controllers
 
             return View();
         }
+
+        public ActionResult StudentText()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult StudentSearch(string name)
+        {
+            var allStudents = db.Students.Where(c => c.Name.Contains(name)).ToList();
+
+            if (allStudents.Count <= 0)
+            {
+                return HttpNotFound();
+            }
+
+            return PartialView(allStudents);
+        }
     }
 }

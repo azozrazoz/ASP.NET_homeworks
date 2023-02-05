@@ -13,7 +13,7 @@ namespace WebApplication1.Controllers
 {
     public class DoctorsController : Controller
     {
-        private AccountContext db = new AccountContext();
+        private PatientContext db = new PatientContext();
 
         // GET: Doctors
         public async Task<ActionResult> Index()

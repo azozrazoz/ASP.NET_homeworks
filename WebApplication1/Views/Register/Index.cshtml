@@ -1,62 +1,76 @@
-﻿@model WebApplication1.Models.Account
+﻿
+
+@model WebApplication1.Models.Account
 
 @{
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Регистрация</h2>
-
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<h2>Register</h2>
 
 <div>
-    <h4>Регистрация пользователя</h4>
+    <h4>Account</h4>
     <hr />
-    @Html.ValidationSummary(false)
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
 
-    <div>
-        First name
-        <div>
-            @Html.EditorFor(model => model.FirstName)
-        </div>
-    </div>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
 
-    <div>
-        Last name
-        <div>
-            @Html.EditorFor(model => model.LastName)
-        </div>
-    </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
 
-    <div>
-        Email
-        <div>
-            @Html.EditorFor(model => model.Email)
-        </div>
-    </div>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
 
-    <div>
-        Password
-        <div>
-            @Html.PasswordFor(model => model.Password)
-        </div>
-    </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
 
-    <div>
-        Gender
-        <div>
-            @Html.CheckBoxFor(model => model.Gender)
-        </div>
-    </div>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
 
-    <div>
-        <div>
-            <input type="submit" value="Зарегистрировать" />
-        </div>
-    </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAdmin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAdmin)
+        </dd>
+
+    </dl>
 </div>
-}
-
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

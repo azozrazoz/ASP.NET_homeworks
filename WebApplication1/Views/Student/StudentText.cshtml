@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "StudentText";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>StudentText</h2>
+
+@using (Ajax.BeginForm("StudentSearch", new AjaxOptions { UpdateTargetId = "results" }))
+            {
+    <input type="text" name="name" />
+    <input type="submit" value="Find" />
+            }
+
+<div id="results">
+
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/Scripts/jquery.unotrusive-ajax.min.js")

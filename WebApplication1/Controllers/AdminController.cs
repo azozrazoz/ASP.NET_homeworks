@@ -8,17 +8,124 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
+using System.Web.UI;
+using WebApplication1.Filters;
 
 namespace WebApplication1.Controllers
 {
     public class AdminController : Controller
     {
+        private LogContext logDb = new LogContext();
         private AccountContext db = new AccountContext();
+        private PatientContext db_patients = new PatientContext();
+
+        public ActionResult Logs()
+        {
+            return View(logDb.ExceptionDetails.ToList());
+        }
 
         // GET: Admin
         public async Task<ActionResult> Index()
         {
             return View(await db.Accounts.ToListAsync());
+        }
+
+        [ExceptionFilter]
+        public ActionResult Test(int id)
+        {
+            if (id > 3)
+            {
+                int[] arr = new int[2];
+                arr[4] = 3;
+            }
+            else if (id < 3)
+            {
+                throw new Exception("id can not less than 3");
+            }
+            else
+            {
+                throw new Exception("Incorrect info");
+            }
+
+            return View();
+        }
+
+        public async Task<ActionResult> Patients(int page = 1)
+        {
+            int pageSize = 5;
+
+            IEnumerable<Patient> patients = await db_patients.Patients
+                .OrderBy(x => x.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize).ToListAsync();
+
+            PageInfo pageInfo = new PageInfo
+            {
+                PageNumber = page,
+                PageSize = pageSize,
+                TotalItems = await db_patients.Patients.CountAsync()
+            };
+
+            PatientsViewModel indexView = new PatientsViewModel
+            {
+                pageInfo = pageInfo,
+                Patients = patients
+                
+            };
+
+            return View(indexView);
+        }
+
+        public async Task<ActionResult> AllUsers(int page = 1)
+        {
+            int pageSize = 10;   
+
+            IEnumerable<Patient> patients = await db_patients.Patients
+                .OrderBy(x => x.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize).ToListAsync();
+
+            IEnumerable<Doctor> doctors = await db_patients.Doctors
+                .OrderBy(x => x.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize).ToListAsync();
+
+            List<Account> users = new List<Account>();
+
+            foreach(var doctor in doctors)
+            {
+                users.Add(new Account 
+                { 
+                    FirstName = doctor.FirstName,
+                    LastName = doctor.LastName,
+                    Gender = doctor.Gender,
+                });
+            }
+
+            foreach (var patient in patients)
+            {
+                users.Add(new Account
+                {
+                    FirstName = patient.FirstName,
+                    LastName = patient.LastName,
+                    Gender = patient.Gender,
+                });
+            }
+
+            PageInfo pageInfo = new PageInfo
+            {
+                PageNumber = page,
+                PageSize = pageSize,
+                TotalItems = await db_patients.Patients.CountAsync() + await db_patients.Doctors.CountAsync()
+            };
+
+            UsersViewModel indexView = new UsersViewModel
+            {
+                pageInfo = pageInfo,
+                accounts = users
+            };
+
+            return View(indexView);
         }
 
         // GET: Admin/Details/5

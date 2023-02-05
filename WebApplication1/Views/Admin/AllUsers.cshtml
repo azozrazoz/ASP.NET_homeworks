@@ -1,0 +1,36 @@
+﻿@model WebApplication1.Models.UsersViewModel
+@{
+    ViewBag.Title = "AllUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AllUsers</h2>
+
+<table class="table">
+    <tr>
+        <td>
+            First name
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Last name
+        </td>
+    </tr>
+    @foreach (var item in Model.accounts)
+    {
+        <tr>
+            <td>@item.FirstName</td>
+        </tr>
+        <tr>
+            <td>@item.LastName</td>
+        </tr>
+    }
+
+</table>
+
+<br />
+
+<div class="btn-group">
+    @WebApplication1.Helpers.PagingHelpers.PageLinks(Html, Model.pageInfo, x => Url.Action("Patients", new { page = x }))
+</div>

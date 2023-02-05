@@ -124,5 +124,24 @@ namespace WebApplication1.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register([Bind(Include = "Id,FirstName,LastName,Email,Password,Gender")] Account account)
+        {
+            if (ModelState.IsValid)
+            {
+                account.CreatedDate = DateTime.Now;
+                db.Accounts.Add(account);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(account);
+        }
     }
 }

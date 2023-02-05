@@ -12,35 +12,16 @@ namespace WebApplication1.Controllers
     {
         AccountContext db = new AccountContext();
         // GET: Register
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return View();
-        }
+            Account account = db.Accounts.Find(id);
 
-        [HttpGet]
-        public ActionResult Register(int id)
-        {
-            ViewBag.Id = id;
+            if (account == null)
+            {
+                return HttpNotFound();
+            }
 
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Register(Account account)
-        {
-            db.Accounts.Add(account);
-            db.SaveChanges();
-
-            return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        public ActionResult Register(Patient account)
-        {
-            db.Accounts.Add(account);
-            db.SaveChanges();
-
-            return RedirectToAction("Index");
-        }
+            return View(account);
+        }        
     }
 }

@@ -19,10 +19,16 @@ namespace WebApplication1.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        public string Gender { get; set; }
+        public bool Gender { get; set; }
 
         public DateTime CreatedDate { get; set; }
 
         public bool IsAdmin { get; set; }
+    }
+
+    public class UsersViewModel
+    {
+        public IEnumerable<Account> accounts { get; set; }
+        public PageInfo pageInfo { get; set; }
     }
 }

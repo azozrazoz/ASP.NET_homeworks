@@ -5,19 +5,23 @@ using System.Data.Entity;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
 using WebApplication1.Util;
+using WebApplication1.Filters;
 
 namespace WebApplication1.Controllers
 {
+    [AuthorizationFilter(Roles = "", Users = "")]
     public class HomeController : Controller
     {
         MovieContext db = new MovieContext();
 
         // Синхронный метод
+        // [AuthAttribute]
         public ActionResult Index()
         {
             IEnumerable<Movie> movies = db.Movies;
@@ -28,6 +32,17 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        [ExceptionFilter]
+        public ActionResult Index2()
+        {
+            int[] arr = new int[3];
+
+            arr[10] = 8;
+
+            return View();
+        }
+
+        [Authorize(Roles = "admin, manager", Users ="")]
         public async Task<ActionResult> MovieList()
         {
             IEnumerable<Movie> movies = await db.Movies.ToListAsync();  
@@ -43,6 +58,7 @@ namespace WebApplication1.Controllers
             return val.ToString();
         }
 
+        [Cache(Duraction =200)]
         public ViewResult SomeMethod()
         {
             ViewData["Head"] = "Hi IT step!";
@@ -50,6 +66,9 @@ namespace WebApplication1.Controllers
             return View("Index");
         }
 
+        [RequireHttps]
+        [OutputCache]
+        [ValidateAntiForgeryToken]
         public RedirectResult SwipeLink()
         {
             // return Redirect("Home\\Index"); // Временная переадресация
