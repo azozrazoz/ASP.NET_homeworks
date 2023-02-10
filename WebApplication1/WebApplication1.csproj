@@ -128,6 +128,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AsyncController.cs" />
     <Compile Include="Controllers\BuyTicketsController.cs" />
+    <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\DoctorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
@@ -137,7 +138,7 @@
     <Compile Include="Controllers\PlayersController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Filters\ActionFilter.cs" />
-    <Compile Include="Filters\AuthAttribute.cs" />
+    <Compile Include="Filters\AuthenticationFilter.cs" />
     <Compile Include="Filters\AuthorizationFilter.cs" />
     <Compile Include="Filters\CacheAttribute.cs" />
     <Compile Include="Filters\ExceptionFilter.cs" />
@@ -152,6 +153,7 @@
       <DependentUpon>202301301531507_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ChatModel.cs" />
     <Compile Include="Models\CourseDBInitializer.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\PatientContext.cs" />
@@ -198,6 +200,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="libman.json" />
     <None Include="Scripts\jquery-3.6.3.intellisense.js" />
+    <Content Include="Scripts\Chat.js" />
     <Content Include="Scripts\jquery-3.6.3.js" />
     <Content Include="Scripts\jquery-3.6.3.min.js" />
     <Content Include="Scripts\jquery-3.6.3.slim.js" />
@@ -222,6 +225,10 @@
     <Content Include="Views\Student\StudentSearch.cshtml" />
     <Content Include="Views\Student\StudentText.cshtml" />
     <Content Include="Views\Admin\AllUsers.cshtml" />
+    <Content Include="Views\Student\StudentName.cshtml" />
+    <Content Include="Views\Chat\Index.cshtml" />
+    <Content Include="Views\Chat\ChatRoom.cshtml" />
+    <Content Include="Views\Chat\History.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\SoccerInfo.mdf" />

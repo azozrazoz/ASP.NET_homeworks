@@ -218,5 +218,17 @@ namespace WebApplication1.Controllers
 
             return PartialView(allStudents);
         }
+
+        public ActionResult StudentName()
+        {
+            Student student = db.Students.FirstOrDefault();
+            return PartialView(student);
+        }
+
+        public JsonResult JsonSearch(string studentName)
+        {
+            var jsonData = db.Students.Where(a => a.Name.Contains(studentName)).ToList();
+            return Json(jsonData, JsonRequestBehavior.AllowGet);
+        }
     }
 }

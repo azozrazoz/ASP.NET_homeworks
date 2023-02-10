@@ -37,11 +37,62 @@
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
-<h1>
+<ul class="breadcrumb">
+    <li>@Html.ActionLink("Chat", "Index", "Chat")</li>
+    <li>@Html.ActionLink("ChatRoom", "ChatRoom", "Chat")</li>
+    <li>@Html.ActionLink("History", "History", "Chat")</li>
+</ul>
+
+<div class="alert alert-danger">
+    Опасно!
+</div>
+<div class="alert alert-success">
+    Задача успешно завершена!
+</div>
+<div class="alert alert-info">
+    Доп инфа
+</div>
+<div class="alert alert-warning">
+    Внимание!
+</div>
+
+<div class="btn-group" role="group">
+    <button type="button" class="btn btn-default">Default</button>
+    <button type="button" class="btn btn-danger">Danger</button>
+    <button type="button" class="btn btn-primary">Primary</button>
+    <button type="button" class="btn btn-success">Success</button>
+    <button type="button" class="btn btn-warning">Warning</button>
+</div>
+
+<div class="row">
+    <div class="col-xs-offset-12 col-xs-8 col-sm-12 col-md-4 col-lg-4 ">
+        <h2>Hello world!</h2>
+        <p>Prikol estzhe</p>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <h2>Hello Almaty!</h2>
+        <p>Almay one hundred colors</p>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <h2>Apple, Microsoft</h2>
+        <p>Amazon, Samsung</p>
+    </div>
+</div>
+
+
+<ul class="pagination">
+    <li><a href="#"><<</a></li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">>></a></li>
+</ul>
+
+@*<h1>
     @Session["name"]
 </h1>
 
-@Html.TextBox("name", (string)ViewBag.Head)
+@Html.TextBox("name", (string)ViewBag.Head)*@
 
 
 

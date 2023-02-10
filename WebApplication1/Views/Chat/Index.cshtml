@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div id="UserName">
+
+</div>
+<div id="LastRefresh">
+
+</div>
+
+<div id="container">
+    <div id="LoginBlock">
+        <p>Enter Login</p>
+        <input type="text" id="txtUserName" />
+        <button id="btnLogin" value="Login">Login</button>
+    </div>
+</div>
+<div id="Error"></div>
+
+@Ajax.ActionLink("Login", "Index", new { user = "", }, new AjaxOptions { UpdateTargetId = "container", OnFailure = "LoginOnFailure", OnSuccess = "LoginOnSuccess" },
+    new { @id = "LoginButton", @style = "visibility:hidden;" })
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/Scripts/jquery.unobtrussive-ajax.js")

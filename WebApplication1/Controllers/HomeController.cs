@@ -15,7 +15,6 @@ using WebApplication1.Filters;
 
 namespace WebApplication1.Controllers
 {
-    [AuthorizationFilter(Roles = "", Users = "")]
     public class HomeController : Controller
     {
         MovieContext db = new MovieContext();

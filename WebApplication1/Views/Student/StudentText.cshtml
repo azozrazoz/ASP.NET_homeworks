@@ -6,15 +6,32 @@
 
 <h2>StudentText</h2>
 
-@using (Ajax.BeginForm("StudentSearch", new AjaxOptions { UpdateTargetId = "results" }))
-            {
+@using (Ajax.BeginForm("JsonSearch", new AjaxOptions { OnSuccess = "OnSuccess" }))
+{
     <input type="text" name="name" />
     <input type="submit" value="Find" />
-            }
+}
+<div id="loading" style="display:none; color: red;font-weight:bold;">
+    <p>LOADING...</p>
+</div>
 
 <div id="results">
 
 </div>
+
+<div id="Link">
+    @Ajax.ActionLink("Students", "StudentName", new AjaxOptions { UpdateTargetId = "Link" })
+</div>
+
+<script type="text/javascript">
+    function OnSuccess(data) {
+        var results = $('#results')
+        results.empty()
+        for (var i = 0; i < data.length; i++) {
+            results.append('<li>' + data[i].Name + '</li>')
+        }
+    }
+</script>
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/Scripts/jquery.unotrusive-ajax.min.js")
