@@ -57,7 +57,7 @@ namespace WebApplication1.Controllers
             return val.ToString();
         }
 
-        [Cache(Duraction =200)]
+        [Cache(Duration = 200)]
         public ViewResult SomeMethod()
         {
             ViewData["Head"] = "Hi IT step!";

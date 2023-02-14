@@ -45,16 +45,14 @@ namespace WebApplication1.Controllers
         public ActionResult Details(int? id)
         {
             Student student = db.Students.Find(id);
-
-            if (student == null)
+            if (student != null)
             {
-                return HttpNotFound();
+                return PartialView(student);
             }
 
-            return View(student);
+            return HttpNotFound();
         }
 
-        [HttpGet]
         public ActionResult Edit(int? id)
         {
             Student student = db.Students.Find(id);
@@ -62,7 +60,6 @@ namespace WebApplication1.Controllers
             {
                 return HttpNotFound();
             }
-
             ViewBag.Courses = db.Courses.ToList();
 
             return View(student);

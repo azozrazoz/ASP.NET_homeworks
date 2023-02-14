@@ -229,6 +229,7 @@
     <Content Include="Views\Chat\Index.cshtml" />
     <Content Include="Views\Chat\ChatRoom.cshtml" />
     <Content Include="Views\Chat\History.cshtml" />
+    <Content Include="Views\Student\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\SoccerInfo.mdf" />
@@ -287,7 +288,6 @@
     <Content Include="Views\Players\Index.cshtml" />
     <Content Include="Views\Players\TeamDetails.cshtml" />
     <Content Include="Views\Players\CreateTeam.cshtml" />
-    <Content Include="Views\Student\Details.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Student\Input.cshtml" />
     <Content Include="Views\Student\AddStudent.cshtml" />

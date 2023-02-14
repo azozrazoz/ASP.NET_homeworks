@@ -1,37 +1,39 @@
 ﻿@model WebApplication1.Models.Student
 
-@{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 
-<h2>Details</h2>
+<div class="modal-content">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal" area-hidden="true">Х</button>
+        <h2>Student Details</h2>
+    </div>
 
-<div>
-    <h4>Student</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            <p>Courses</p>
-        </dt>
-        <dd>
-            <ul>
-                @foreach (WebApplication1.Models.Course c in Model.Courses)
-                {
-                    <li>@c.Name</li>
-                }
-            </ul>
-        </dd>
-    </dl>
+    <div class="modal-body">
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                <p>Courses</p>
+            </dt>
+
+            <dd>
+                <ul>
+                    @foreach (WebApplication1.Models.Course c in Model.Courses)
+                    {
+                        <li>@c.Name</li>
+                    }
+                </ul>
+            </dd>
+        </dl>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

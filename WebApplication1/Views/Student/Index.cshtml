@@ -7,6 +7,12 @@
 
 <h2>Index</h2>
 
+<div id="modDialog" class="modal fade">
+    <div id="dialogContent" class="modal-dialog">
+
+    </div>
+</div>
+
 <table class="table">
     <tr>
         <td>
@@ -17,7 +23,7 @@
     @foreach (var item in Model.Students)
     {
         <tr>
-            <td>@item.Name</td>
+            <td>@Html.ActionLink(item.Name, "Details", new { id = item.Id }, new { @class = "studentItem" })</td>
         </tr>
     }
 
@@ -28,3 +34,18 @@
 <div class="btn-group">
         @WebApplication1.Helpers.PagingHelpers.PageLinks(Html, Model.pageInfo, x => Url.Action("index", new {page = x }))
     </div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $ajaxSetup({ cashe: false });
+            $(".studentItem").click((function (e) {
+                e.preventDefault();
+                $.get(this.href, function (data) {
+                    $('#dialogContent').html(data);
+                    $('#modDialog').model('show');
+                });
+            }));
+        });
+    </script>
+    }
