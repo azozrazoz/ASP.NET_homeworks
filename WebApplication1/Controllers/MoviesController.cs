@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
+using Ninject;
 
 namespace WebApplication1.Controllers
 {
@@ -15,10 +16,19 @@ namespace WebApplication1.Controllers
     {
         private MovieContext db = new MovieContext();
 
-        // GET: Movies
-        public async Task<ActionResult> Index()
+        IRepository repo;
+
+        public MoviesController(IRepository repo_)
         {
-            return View(await db.Movies.ToListAsync());
+            /*IKernel ninjectKernel = new StandardKernel();
+            ninjectKernel.Bind<IRepository>().To<MovieRepository>();
+            repo = ninjectKernel.Get<IRepository>();*/
+        }
+
+        // GET: Movies
+        public ActionResult Index()
+        {
+            return View(repo.List());
         }
 
         // GET: Movies/Details/5
@@ -28,7 +38,7 @@ namespace WebApplication1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Movie movie = await db.Movies.FindAsync(id);
+            Movie movie = repo.Get(id);
             if (movie == null)
             {
                 return HttpNotFound();  
@@ -51,7 +61,7 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Movies.Add(movie);
+                repo.Save(movie);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -66,7 +76,7 @@ namespace WebApplication1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Movie movie = await db.Movies.FindAsync(id);
+            Movie movie = repo.Get(id);
             if (movie == null)
             {
                 return HttpNotFound();
@@ -97,7 +107,7 @@ namespace WebApplication1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Movie movie = await db.Movies.FindAsync(id);
+            Movie movie = repo.Get(id);
             if (movie == null)
             {
                 return HttpNotFound();
@@ -110,7 +120,7 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Movie movie = await db.Movies.FindAsync(id);
+            Movie movie = repo.Get(id);
             db.Movies.Remove(movie);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");

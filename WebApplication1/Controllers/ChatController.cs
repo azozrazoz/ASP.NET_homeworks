@@ -29,12 +29,10 @@ namespace WebApplication1.Controllers
                 {
                     chatModel = new ChatModel();
                 }
-
                 if (chatModel.Messages.Count > 100)
                 {
                     chatModel.Messages.RemoveRange(0, 90);
                 }
-
                 if (!Request.IsAjaxRequest())
                 {
                     return View(chatModel);
@@ -47,7 +45,7 @@ namespace WebApplication1.Controllers
                     }
                     else if (chatModel.Users.Count > 10)
                     {
-                        throw new Exception("Limit in the chat (only 10 users)");
+                        throw new Exception("Limit in the Chat(only 10 users)");
                     }
                     else
                     {
@@ -55,13 +53,13 @@ namespace WebApplication1.Controllers
                         {
                             Name = user,
                             LoginTime = DateTime.Now,
-                            LastPing = DateTime.Now,
+                            LastPing = DateTime.Now
                         });
 
                         chatModel.Messages.Add(new ChatMessage()
                         {
-                            Value = user + " joined!",
-                            Date = DateTime.Now,
+                            Value = user + "joined for the chat",
+                            Date = DateTime.Now
                         });
                     }
                     return PartialView("ChatRoom", chatModel);
@@ -69,26 +67,27 @@ namespace WebApplication1.Controllers
                 else if (logOff != null && (bool)logOff)
                 {
                     logOFF(chatModel.Users.FirstOrDefault(u => u.Name == user));
+
                     return PartialView("ChatRoom", chatModel);
                 }
                 else
                 {
                     ChatUser currentUser = chatModel.Users.FirstOrDefault(u => u.Name == user);
+
                     currentUser.LastPing = DateTime.Now;
 
                     List<ChatUser> toRemove = new List<ChatUser>();
-                    foreach (ChatUser user_ in chatModel.Users)
+                    foreach (Models.ChatUser usr in chatModel.Users)
                     {
                         TimeSpan span = DateTime.Now - currentUser.LastPing;
                         if (span.TotalSeconds > 20)
                         {
-                            toRemove.Add(user_);
+                            toRemove.Add(usr);
                         }
                     }
-
-                    foreach(ChatUser user_ in toRemove)
+                    foreach (ChatUser usr in toRemove)
                     {
-                        logOFF(user_);
+                        logOFF(usr);
                     }
 
                     if (!string.IsNullOrEmpty(chatMessage))
@@ -97,11 +96,12 @@ namespace WebApplication1.Controllers
                         {
                             User = currentUser,
                             Value = chatMessage,
-                            Date = DateTime.Now,
+                            Date = DateTime.Now
                         });
                     }
                     return PartialView("History", chatModel);
                 }
+
             }
             catch (Exception ex)
             {

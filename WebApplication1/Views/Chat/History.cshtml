@@ -1,44 +1,27 @@
 ﻿@model WebApplication1.Models.ChatModel
 
-
-
 <div id="Users">
-    <p>
-        <b>Onlinke: @Model.Users.Count</b>
-    </p>
-    @foreach(WebApplication1.Models.ChatUser user in Model.Users)
-            {
-                <p>@user.Name</p>
-            }
+    <p><b>Online:@Model.Users.Count</b></p>
+    @foreach (WebApplication1.Models.ChatUser user in Model.Users)
+    {
+        <p>@user.Name</p>
+    }
 </div>
 <div id="Messages">
-    @foreach(WebApplication1.Models.ChatMessage msg in Model.Messages)
-            {
-                <p>
-                    @msg.Date
-                    <br />
-                    @if(msg.User != null)
-                {
-                    <b>@(msg.User.Name + ": ")</b>@msg.Value
-                }
-                    else
-                {
-                    <span class="serverMes">
-                        @msg.Value
-                    </span>
-                }
-                </p>
-            }
+    @foreach (WebApplication1.Models.ChatMessage msg in Model.Messages)
+    {
+
+        <p>
+            @msg.Date<br />
+
+        @if (msg.User != null)
+        {
+            <b>@(msg.User.Name + ":")</b> @msg.Value
+        }
+        else
+        {
+            <span class="serverMes">@msg.Value</span>
+        }
+    </p>
+}
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
