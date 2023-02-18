@@ -1,5 +1,5 @@
 ﻿@model WebApplication1.Models.IndexViewModel
-
+@using WebApplication1.Helpers
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,44 +8,42 @@
 <h2>Index</h2>
 
 <div id="modDialog" class="modal fade">
-    <div id="dialogContent" class="modal-dialog">
-
-    </div>
+    <div id="dialogContent" class="modal-dialog"></div>
 </div>
 
-<table class="table">
+<table>
     <tr>
-        <td>
-            Name
-        </td>
+        <td><h3>Name</h3></td>
+        <td></td>
     </tr>
-
     @foreach (var item in Model.Students)
     {
         <tr>
-            <td>@Html.ActionLink(item.Name, "Details", new { id = item.Id }, new { @class = "studentItem" })</td>
+            <td> @Html.ActionLink(item.Name, "Details", new { id = item.Id }, new { @class = "studentItem" }) </td>
         </tr>
     }
-
 </table>
 
 <br />
 
 <div class="btn-group">
-        @WebApplication1.Helpers.PagingHelpers.PageLinks(Html, Model.pageInfo, x => Url.Action("index", new {page = x }))
-    </div>
+    @Html.PageLinks(Model.pageInfo, x => Url.Action("Index", new { page = x }))
+</div>
 
 @section scripts{
+
     <script type="text/javascript">
         $(function () {
-            $ajaxSetup({ cashe: false });
-            $(".studentItem").click((function (e) {
+            $.ajaxSetup({ cashe: false });
+            $(".studentItem").click(function (e) {
                 e.preventDefault();
                 $.get(this.href, function (data) {
                     $('#dialogContent').html(data);
-                    $('#modDialog').model('show');
+                    $('#modDialog').modal('show');
                 });
-            }));
-        });
+            });
+        })
     </script>
-    }
+
+    @Scripts.Render("~/Scripts/bootstrap.bundle.min.js")
+}
