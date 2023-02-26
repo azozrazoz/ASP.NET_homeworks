@@ -12,6 +12,12 @@
 
 function LoginOnSucces(result) {
     /*Scroll();*/
+
+    $.ajax({
+        type: "Get",
+        cache: true
+    })
+
     ShowLastRefresh();
 
     setTimeout("Refresh()", 4000)
@@ -38,6 +44,8 @@ function LoginOnSucces(result) {
 
         document.location.href = "Chat";
     })
+
+    Response.CacheControl()
 }
 
 function LofinOnFailure(result) {
